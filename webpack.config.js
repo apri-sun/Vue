@@ -19,8 +19,10 @@ module.exports = {
     module: {
         rules: [
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+            { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
             { test: /\.vue$/, use: 'vue-loader' },
             { test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader' },
+            { test: /\.(png|jpg|jpeg)$/, use: 'url-loader' },
         ],
     }
 }
