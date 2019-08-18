@@ -3,8 +3,8 @@
     <div class="comment-container">
         <h1 class="comment-head">发表评论</h1>
         <hr />
-        <textarea placeholder="请输入需要BB的内容(最多120字)" maxlength="120"></textarea>
-        <mt-button class="sub-btn" type="primary">发表看法</mt-button>
+        <textarea v-model="inputValue" placeholder="请输入需要BB的内容(最多120字)" maxlength="120"></textarea>
+        <mt-button class="sub-btn" type="primary" @click="handlerPost">发表看法</mt-button>
         <ul>
             <li class="list" v-for="item in commentlist" :key="item.id">
                 <p class="user-info">第{{ item.id }}楼 用户:{{ item.user }} 发表时间:{{ item.time | inittime }}</p>
@@ -19,6 +19,7 @@
 export default {
     data() {
         return {
+            inputValue:"",
             commentlist: [
                 { id: 1, user: "sxf", time: new Date(), container: "哇哈哈" },
                 { id: 2, user: "sdf", time: new Date(), container: "啦啦啦" },
@@ -27,6 +28,14 @@ export default {
             ],
         }
     },
+    methods:{
+        handlerPost:function(){
+            const msg=this.inputValue
+            const a={ id: this.commentlist.length+1, user: "ssf", time: new Date(), container:msg  }
+            this.commentlist.push(a)
+            this.inputValue = ''
+        }
+    }
 }
 </script>
 
